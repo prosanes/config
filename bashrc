@@ -13,6 +13,11 @@ alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
 alias egrep='egrep --color=always'
 
+
+#GIT
+# git completion
+source /etc/bash_completion.d/git-completion.bash
+
 # git branch
 parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
@@ -25,6 +30,8 @@ PS1="\$(parse_git_branch)$PS1"
 alias gl='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --'
 ## Pretty graph one parent
 alias gl1p='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --first-parent'
+alias glfh='git log --graph --full-history --all --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --'
+alias git_tags_with_dates='git log --tags --simplify-by-decoration --pretty="format:%ai %d"'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -55,11 +62,15 @@ editconflicts() {
 }
 
 # create ctags for php
-alias ctagsphp="ctags -R --exclude=.svn --tag-relative=yes --PHP-kinds=+cf-v --regex-PHP='/abstract\s+class\s+([^ ]+)/\1/c/' --regex-PHP='/interface\s+([^ ]+)/\1/c/' --regex-PHP='/(public\s+|static\s+|abstract\s+|protected\s+|private\s+)function\s+\&?\s*([^ (]+)/\2/f/' ~/bomnegocio/php"
-alias ctagsapi="ctags -R -o ~/api/tags ~/api"
+alias ctagsphp="ctags -R --exclude=.git --exclude=ninja_build --tag-relative=yes --PHP-kinds=+cf-v --regex-PHP='/abstract\s+class\s+([^ ]+)/\1/c/' --regex-PHP='/interface\s+([^ ]+)/\1/c/' --regex-PHP='/(public\s+|static\s+|abstract\s+|protected\s+|private\s+)function\s+\&?\s*([^ (]+)/\2/f/' ~/bomnegocio/php"
+alias ctagbn="ctags -R --exclude=.git --exclude=ninja_build ~/bomnegocio/* /usr/local/lib/ruby/"
+ctags_ng_api() {
+	find . -type f -not -path "./build*" -not -path "./ng_api_tags*" -not -path "*__pycache__*" -not -path "./.git*" -not -path "./platform*" > to_index
+	ctags -R -f ng_api_tags -L to_index --python-kinds=-i
 
 # ignore git ssl certificate
 export GIT_SSL_NO_VERIFY=true
+
 
 function fix_test ()
 {
