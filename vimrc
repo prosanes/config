@@ -11,6 +11,10 @@ set noexpandtab
 "set nowrapscan
 set mouse=nvi
 
+" Autocomplete mode
+set wildmode=longest,list,full
+set wildmenu
+
 " Blocket Platform
 " Correct the file type
 au BufNewFile,BufRead bconf.txt.* set filetype=cfg
@@ -38,6 +42,14 @@ autocmd bufwritepost $MYVIMRC source $MYVIMRC
 "auto indent
 set ai
 set si
+
+" fold method
+set foldmethod=syntax
+set foldlevel=99 " unfold by default
+" za zA
+
+" git commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=55
 
 "GF working with templates
 set path=.,~,/usr/include
@@ -88,3 +100,4 @@ function! FindBconfKey()
 endfunction
 noremap gb :call FindBconfKey() <CR>
 
+nmap yp :let @" = expand("%") <CR>
