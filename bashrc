@@ -67,6 +67,7 @@ alias ctagbn="ctags -R --exclude=.git --exclude=ninja_build ~/bomnegocio/* /usr/
 ctags_ng_api() {
 	find . -type f -not -path "./build*" -not -path "./ng_api_tags*" -not -path "*__pycache__*" -not -path "./.git*" -not -path "./platform*" > to_index
 	ctags -R -f ng_api_tags -L to_index --python-kinds=-i
+}
 
 # ignore git ssl certificate
 export GIT_SSL_NO_VERIFY=true
