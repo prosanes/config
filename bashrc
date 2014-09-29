@@ -1,3 +1,5 @@
+# Makes less scroll nicely horizontally
+export LESS='-R#3'
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
