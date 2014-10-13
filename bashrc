@@ -11,6 +11,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+#$set -o emacs
+#to disable the command below
+set -o vi
+
 # User specific aliases and functions
 alias lalias='cat ~/.bashrc | grep alias'
 alias ll='ls -laGh --color=auto'
