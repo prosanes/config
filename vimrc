@@ -62,8 +62,11 @@ set path=.,~,/usr/include
 set includeexpr=substitute(v:fname,'^\\(.*\\)$','templates/\\1.tmpl','g')
 
 " ctrlp ignores
+" F5 refresh cache
+let g:ctrlp_max_files = 20000
+let g:ctrlp_max_depth = 40
 let g:ctrlp_custom_ignore = {
-	\ 'dir': '\v[\/](regress_final|build)$'
+	\ 'dir': '\vregress_final|build|platform'
 	\ }
 
 " Vundle
