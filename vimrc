@@ -79,13 +79,14 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tsaleh/vim-matchit'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive'
 " usage: :GitGutterDisable :GitGutterEnable :GitGutterToogle
 " jump to next unk ]h previous hunk [h
 ":BundleInstall to run
+":BundleUpdate
+"execute pathogen#infect() to automatically update
 
 filetype plugin indent on
-
-execute pathogen#infect()
 
 function! FindBconfKey()
 	let key = expand("<cWORD>")
