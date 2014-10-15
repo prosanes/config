@@ -37,7 +37,6 @@ alias git_tags_with_dates='git log --tags --simplify-by-decoration --pretty="for
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-
 dirtree() {
 	ls $1 -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/';
 }
@@ -60,6 +59,7 @@ export PATH=${SCMCOORD}:${PYTHON_27}:${PATH}
 editconflicts() {
     vim +/"<<<<<<<" $( git diff --name-only --diff-filter=U | xargs )
 }
+
 
 # create ctags for php
 alias ctagsphp="ctags -R --exclude=.git --exclude=ninja_build --tag-relative=yes --PHP-kinds=+cf-v --regex-PHP='/abstract\s+class\s+([^ ]+)/\1/c/' --regex-PHP='/interface\s+([^ ]+)/\1/c/' --regex-PHP='/(public\s+|static\s+|abstract\s+|protected\s+|private\s+)function\s+\&?\s*([^ (]+)/\2/f/' ~/bomnegocio/php"
