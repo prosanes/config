@@ -66,7 +66,7 @@ set includeexpr=substitute(v:fname,'^\\(.*\\)$','templates/\\1.tmpl','g')
 let g:ctrlp_max_files = 20000
 let g:ctrlp_max_depth = 40
 let g:ctrlp_custom_ignore = {
-	\ 'dir': '\vregress_final|build|platform'
+	\ 'dir': '\vregress_final|build|platform|virtualenv'
 	\ }
 
 " Vundle
