@@ -1,3 +1,11 @@
+# Makes less scroll nicely horizontally
+#export LESS='-R#3'
+
+# bash in vi mode
+# if you want to undo
+# $set -o emacs
+set -o vi
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
