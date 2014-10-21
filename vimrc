@@ -110,4 +110,16 @@ function! FindBconfKey()
 endfunction
 noremap gb :call FindBconfKey() <CR>
 
+"yank filename
 nmap yp :let @" = expand("%") <CR>
+
+" Identando JSON no vim:
+" 
+" Pedro Lira [14:43]
+" :%!python -m json.tool
+" 
+" Pedro Lira [14:43]
+" Identando XML no vim:
+" 
+" Pedro Lira [14:44]
+" :%!xmllint --format -
