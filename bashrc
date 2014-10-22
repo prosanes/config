@@ -129,3 +129,4 @@ function fix_test_diff ()
     sed ':a;N;$!ba;s/,\n/, /g' -i $out
 }
 
+export API_SITE_ENCODING=latin1
