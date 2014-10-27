@@ -69,24 +69,72 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir': '\vregress_final|build|platform|virtualenv'
 	\ }
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tsaleh/vim-matchit'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
+
+Plugin 'gmarik/vundle'
+
+Plugin 'kien/ctrlp.vim'
+
+Plugin 'airblade/vim-gitgutter'
 " usage: :GitGutterDisable :GitGutterEnable :GitGutterToogle
 " jump to next unk ]h previous hunk [h
-":BundleInstall to run
-":BundleUpdate
-"execute pathogen#infect() to automatically update
+"
+Plugin 'tpope/vim-fugitive'
+"[2014-10-27 17:05:17] Helptags:
+"[2014-10-27 17:05:17] :helptags /home/prosanes/.vim/bundle/vundle/doc/
+"[2014-10-27 17:05:17] :helptags /home/prosanes/.vim/bundle/ctrlp.vim/doc/
+"[2014-10-27 17:05:17] :helptags /home/prosanes/.vim/bundle/vim-gitgutter/doc/
+"[2014-10-27 17:05:17] :helptags /home/prosanes/.vim/bundle/vim-fugitive/doc/
 
-filetype plugin indent on
+" Examples:
+" The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+" " plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" " git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" " The sparkup vim script is in a subdirectory of this repo called vim.
+" " Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
+"
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+" 
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+" " see :h vundle for more details or wiki for FAQ
+" " Put your non-Plugin stuff after this line
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! FindBconfKey()
 	let key = expand("<cWORD>")
