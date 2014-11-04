@@ -50,9 +50,11 @@ set ai
 set si
 
 " fold method
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevel=99 " unfold by default
-" za zA
+" za zA zM zR
+" set foldmethod=manual
+" zf3j
 
 " git commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=55
