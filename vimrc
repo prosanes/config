@@ -31,6 +31,8 @@ endif
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 
+set foldmethod=manual
+
 " Save as a new file name and open it
 command! -nargs=1 WE :w <args> | :e <args>
 command! -nargs=1 WED :w %:h/<args> | :e %:h/<args>
