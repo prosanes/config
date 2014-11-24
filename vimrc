@@ -27,12 +27,6 @@ if &diff
 	set nu
 endif
 
-" changing windows with the default vim arrows
-nmap h <C-W>h
-nmap l <C-w>l
-nmap j <C-w>j
-nmap k <C-w>k
-
 " open newline without entering insert mode
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
