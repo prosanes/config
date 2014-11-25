@@ -97,6 +97,9 @@ Plugin 'tpope/vim-fugitive'
 "[2014-10-27 17:05:17] :helptags /home/prosanes/.vim/bundle/vim-gitgutter/doc/
 "[2014-10-27 17:05:17] :helptags /home/prosanes/.vim/bundle/vim-fugitive/doc/
 
+Plugin 'scrooloose/syntastic'
+" :SyntasticCheck pylint
+
 " Examples:
 " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
@@ -131,6 +134,8 @@ filetype plugin indent on    " required
 "
 " " see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
+
+let g:syntastic_python_pylint_args = "--disable=W0312,C0111"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
