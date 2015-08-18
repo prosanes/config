@@ -100,6 +100,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 " :SyntasticCheck pylint
 
+Plugin 'mileszs/ack.vim'
+" :Ack pattern
+
+
 " Examples:
 " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
@@ -138,28 +142,6 @@ filetype plugin indent on    " required
 let g:syntastic_python_pylint_args = "--disable=W0312,C0111"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-function! FindBconfKey()
-	let key = expand("<cWORD>")
-	let key = substitute(key, "[^a-zA-Z0-9._]\\+", "", "g")
-	echo "Searching: " . key
-	let options = split(system("grep -n " . key . " $(find conf/ -type f -name bconf\\.*)"), "\n")
-	if len(options) == 0
-		echo "No results found!"
-		return
-	endif
-	let num_options = []
-	for line in options 
-		call add(num_options, ((len(num_options) + 1) . " " . line) )
-	endfor
-	let answer = input(join(num_options, "\n") . "\n")
-	if !empty(answer)
-		let selected = split(options[answer - 1], ":")
-		execute "tabe " . selected[0]
-		execute ":" . selected[1]
-	endif
-endfunction
-noremap gb :call FindBconfKey() <CR>
 
 "yank filename
 nmap yp :let @" = expand("%") <CR>
