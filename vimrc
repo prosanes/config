@@ -4,9 +4,9 @@ colorscheme default
 "syntax on
 syntax enable
 
-set ts=4
-set shiftwidth=4
-set noexpandtab
+set ts=2
+set shiftwidth=2
+set expandtab
 "set nowrap
 "set nowrapscan
 set mouse=nvi
@@ -30,6 +30,7 @@ endif
 " open newline without entering insert mode
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
+map <C-n> :NERDTreeToggle<CR>
 
 set foldmethod=manual
 
@@ -55,17 +56,15 @@ set foldlevel=99 " unfold by default
 " git commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=55
 
-"GF working with templates
-set path=.,~,/usr/include
-set includeexpr=substitute(v:fname,'^\\(.*\\)$','templates/\\1.tmpl','g')
-
 " ctrlp ignores
 " F5 refresh cache
 let g:ctrlp_max_files = 20000
 let g:ctrlp_max_depth = 40
 let g:ctrlp_custom_ignore = {
-	\ 'dir': '\vregress_final|build|platform|virtualenv'
+	\ 'dir': '\vvirtualenv'
 	\ }
+
+let &tags = './tags,tags,' . substitute(expand("%:p:h"), "\(^\/home\/prosanes\/dev\/.*/\).*$", "\1", "")
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -102,6 +101,8 @@ Plugin 'scrooloose/syntastic'
 
 Plugin 'mileszs/ack.vim'
 " :Ack pattern
+
+Plugin 'scrooloose/nerdtree'
 
 
 " Examples:
