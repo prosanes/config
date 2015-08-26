@@ -1,4 +1,5 @@
 " :help window-moving
+"
 
 colorscheme default 
 "syntax on
@@ -104,6 +105,13 @@ Plugin 'mileszs/ack.vim'
 
 Plugin 'scrooloose/nerdtree'
 
+Plugin 'regedarek/ZoomWin'
+" <c-w>o ZoomWin in and out
+
+Plugin 'vim-scripts/tComment'
+" gcc to comment one line
+" gc to multiple visual lines
+
 
 " Examples:
 " The following are examples of different formats supported.
@@ -157,3 +165,5 @@ nmap yp :let @" = expand("%") <CR>
 " 
 " Pedro Lira [14:44]
 " :%!xmllint --format -
+
+nnoremap ; :
