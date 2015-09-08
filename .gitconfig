@@ -1,9 +1,0 @@
-[user]
-	email = prosanes@estantevirtual.com.br
-	name = Pedro Rosanes
-[core]
-	editor = vi
-[alias]
-	st = status
-	ci = commit
-	co = checkout
