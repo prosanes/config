@@ -73,7 +73,3 @@ function vimswp (){
 }
 
 
-ctags_example() {
-	find . -type f -not -path "./build*" -not -path "./ng_api_tags*" -not -path "*__pycache__*" -not -path "./.git*" -not -path "./platform*" > to_index
-	ctags -R -f ng_api_tags -L to_index --python-kinds=-i
-}

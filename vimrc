@@ -1,5 +1,6 @@
 " :help window-moving
 "
+"
 
 colorscheme default 
 "syntax on
@@ -11,6 +12,7 @@ set expandtab
 "set nowrap
 "set nowrapscan
 set mouse=nvi
+set hlsearch
 
 " Autocomplete mode
 set wildmode=longest,list,full
@@ -23,15 +25,22 @@ au BufNewFile,BufRead *.html.tmpl set filetype=html
 au BufNewFile,BufRead *.sql.tmpl set filetype=sql
 
 " Line Numbers
-set nu
+set rnu
 if &diff
 	set nu
 endif
 
+let mapleader=" "
+
 " open newline without entering insert mode
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
+" ctrl + n opens nerdtree
 map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle %<CR>
+map <C-f> :NERDTreeFind<CR>
+" F3 uses Ack! of word under cursor
+map <F3> "myiw:Ag! <C-r>m<CR>
 
 set foldmethod=manual
 
@@ -82,6 +91,11 @@ call vundle#begin()
 " let Vundle manage Vundle
 " required! 
 
+Plugin 'morhetz/gruvbox'
+" colorscheme gruvbox
+
+Plugin 'mhinz/vim-startify'
+
 Plugin 'gmarik/vundle'
 
 Plugin 'kien/ctrlp.vim'
@@ -100,8 +114,19 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 " :SyntasticCheck pylint
 
-Plugin 'mileszs/ack.vim'
-" :Ack pattern
+Plugin 'rking/ag.vim'
+" :Ag [options] {pattern} [{directory}]
+" Search recursively in {directory} (which defaults to the current directory)
+" for the {pattern}.
+"
+" Files containing the search term will be listed in the split window, along
+" with the line number of the occurrence, once for each occurrence. [Enter] on
+" a line in this window will open the file, and place the cursor on the
+" matching line.
+"
+" Just like where you use :grep, :grepadd, :lgrep, and :lgrepadd, you can use
+" :Ag, :AgAdd, :LAg, and :LAgAdd respectively. (See doc/ag.txt, or install and
+" :h Ag for more information.)
 
 Plugin 'scrooloose/nerdtree'
 
@@ -111,7 +136,6 @@ Plugin 'regedarek/ZoomWin'
 Plugin 'vim-scripts/tComment'
 " gcc to comment one line
 " gc to multiple visual lines
-
 
 " Examples:
 " The following are examples of different formats supported.
@@ -148,7 +172,33 @@ filetype plugin indent on    " required
 " " see :h vundle for more details or wiki for FAQ
 " " Put your non-Plugin stuff after this line
 
+" Syntastic Checkers
 let g:syntastic_python_pylint_args = "--disable=W0312,C0111"
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+
+" vim startify
+let g:startify_change_to_vcs_root = 1
+let g:startify_bookmarks = [ 
+        \ { 'co': '~/dev/checkout' },
+        \ { 'am': '~/dev/amsterdam' },
+        \ { 'lb': '~/dev/library' },
+        \ { 'cb': '~/dev/opsworks-cookbooks' },
+        \]
+let g:startify_list_order = [
+        \ ['   These are my bookmarks:'],
+        \ 'bookmarks',
+        \ ['   My most recently', '   used files'],
+        \ 'files',
+        \ ['   My most recently used files in the current directory:'],
+        \ 'dir',
+        \ ['   These are my sessions:'],
+        \ 'sessions',
+        \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -166,4 +216,11 @@ nmap yp :let @" = expand("%") <CR>
 " Pedro Lira [14:44]
 " :%!xmllint --format -
 
-nnoremap ; :
+" Tab navigation
+noremap <C-Right> :tabn<CR> 
+inoremap <C-Right> <esc>:tabn<CR><Insert> 
+noremap <C-Left> :tabprev<CR> 
+inoremap <C-Left> <ESC>tabprev<CR><Insert>
+
+colorscheme gruvbox
+set background=dark
