@@ -239,5 +239,7 @@ noremap <C-Left> :tabprev<CR>
 inoremap <C-Left> <ESC>tabprev<CR><Insert>
 noremap <f9> :set filetype=html<CR>
 
-colorscheme gruvbox
+if filereadable( expand("$HOME/.vim/bundle/gruvbox/colors/gruvbox.vim") )
+	colorscheme gruvbox
+endif
 set background=dark
