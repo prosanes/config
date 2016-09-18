@@ -1,10 +1,11 @@
 # Basic development
-sudo apt-get install -y vim git
+sudo apt-get install -y vim git tmux
 mkdir -p ~/dev
 cd ~/dev
 if [ ! -d "config" ]; then
   git clone https://github.com/prosanes/config.git
 fi
+mv ~/.bashrc ~/.bashrc.old
 ln -s ~/dev/config/bashrc ~/.bashrc
 ln -s ~/dev/config/vimrc ~/.vimrc
 ln -s ~/dev/config/gitconfig ~/.gitconfig
@@ -19,3 +20,12 @@ sudo apt-get update
 sudo apt-get install -y google-chrome-stable
 
 # RbEnv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+source ~/.bashrc
+sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+rbenv install 2.3.1
+rbenv local 2.3.1
+
+# Others
+sudo apt-get install -y htop
