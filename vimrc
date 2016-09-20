@@ -52,10 +52,15 @@ map <Leader>ap $p
 map <Leader>riw viwp
 
 map <Leader>w :w<CR>
-map <Leader>fmi :set foldmethod=indent<CR>
-map <Leader>fms :set foldmethod=syntax<CR>
+
 map <Leader>ovrc :tabe ~/.vimrc<CR>
 map <Leader>svrc :source ~/.vimrc<CR>
+
+map <Leader>sp :set paste<CR>
+map <Leader>snp :set nopaste<CR>
+ 
+map <Leader>fmi :set foldmethod=indent<CR>
+map <Leader>fms :set foldmethod=syntax<CR>
 map <Leader>fl0 :set foldlevel=0<CR>
 map <Leader>fl1 :set foldlevel=1<CR>
 map <Leader>fl2 :set foldlevel=2<CR>
@@ -241,3 +246,23 @@ noremap <f9> :set filetype=html<CR>
 
 colorscheme gruvbox
 set background=dark
+
+" To work webpack --watch
+"Vim
+"On some machines Vim is preconfigured with the backupcopy option set to auto. This could potentially cause problems with the system’s file watching mechanism. Switching this option to yes will make sure a copy of the file is made and the original one overwritten on save.
+set backupcopy=yes
+
+" To allow gF to work based on current FileType
+" http://stackoverflow.com/questions/33093491/vim-gf-with-file-extension-based-on-current-filetype
+augroup suffixes
+    autocmd!
+
+    let associations = [
+                \["javascript", ".js,.javascript,.es,.esx,.json,.jsx"],
+                \["python", ".py,.pyw"]
+                \]
+
+    for ft in associations
+        execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
+    endfor
+augroup END
