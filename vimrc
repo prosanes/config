@@ -13,6 +13,7 @@ set expandtab
 "set nowrapscan
 set mouse=nvi
 set hlsearch
+set smartcase
 
 " Autocomplete mode
 set wildmode=longest,list,full
@@ -20,9 +21,9 @@ set wildmenu
 
 " Blocket Platform
 " Correct the file type
-au BufNewFile,BufRead bconf.txt.* set filetype=cfg
-au BufNewFile,BufRead *.html.tmpl set filetype=html
-au BufNewFile,BufRead *.sql.tmpl set filetype=sql
+autocmd BufNewFile,BufRead bconf.txt.* set filetype=cfg
+autocmd BufNewFile,BufRead *.html.tmpl set filetype=html
+autocmd BufNewFile,BufRead *.sql.tmpl set filetype=sql
 
 " Line Numbers
 set rnu
@@ -50,6 +51,8 @@ imap <C-Down> <C-o><C-y>
 
 map <Leader>ap $p
 map <Leader>riw viwp
+map <Leader>y "+y
+map <Leader>p "+p
 
 map <Leader>w :w<CR>
 
@@ -79,7 +82,6 @@ set si
 
 " fold method
 set foldmethod=indent
-set foldlevel=0 " unfold by default
 " za zA zM zR
 " set foldmethod=manual
 " zf3j
@@ -91,9 +93,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=55
 " F5 refresh cache
 let g:ctrlp_max_files = 20000
 let g:ctrlp_max_depth = 40
-let g:ctrlp_custom_ignore = {
-	\ 'dir': '\vvirtualenv'
-	\ }
+let g:ctrlp_custom_ignore = 'tmp/\|node_modules\|client/node_modules\|DS_Store\|git'
 
 let &tags = './tags,tags,' . substitute(expand("%:p:h"), "\(^\/home\/prosanes\/dev\/.*/\).*$", "\1", "")
 
@@ -105,9 +105,9 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
+call vundle#begin('~/.vim/bundle/')
 
 " let Vundle manage Vundle
 " required! 
@@ -191,11 +191,12 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=0                                                                        
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'                           
 let g:syntastic_mode_map = { 'mode': 'active',                                                     
-                           \ 'active_filetypes': ['python', 'php'],                                
-                           \ 'passive_filetypes': ['puppet'] }                                     
+                           \ 'active_filetypes': ['python', 'php', 'js'],                                
+                           \ 'passive_filetypes': ['puppet', 'jsx'] }                                     
 
 let g:syntastic_python_pylint_args = "--disable=W0312,C0111"
 let g:syntastic_ruby_checkers = ['rubocop', 'ruby-lint']
+let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_aggregate_errors = 1
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
@@ -266,3 +267,15 @@ augroup suffixes
         execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
     endfor
 augroup END
+
+
+function FoldLevelDependingOnStartFile()
+  if @% == ""
+    " No filename for current bugger
+    set foldlevel=9
+  else
+    set foldlevel=0
+  endif
+endfunction
+
+au VimEnter * call FoldLevelDependingOnStartFile()
