@@ -214,10 +214,20 @@ function ssh_boladao {
   ssh `daileon.rb show $stack_name | grep -E '([0-9]{1,3}\.){3}[0-9]{1,3}' | grep $token | grep online  | awk -F '|' '{print $4;}' | awk -F '(' '{print $1}'`
 }
 
-
 function pp_curl {
    curl $1 | python -m json.tool | less
  }
+
+function port {
+  sudo netstat -tulpn | grep ":$1"
+}
+
+function watchy {
+  inotifywait -q -m -e close_write -r ./ |
+  while read events; do
+    zeus rspec $1;
+  done
+}
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"

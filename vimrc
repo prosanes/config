@@ -49,6 +49,8 @@ map <C-Down> <C-y>
 imap <C-Up> <C-o><C-e>
 imap <C-Down> <C-o><C-y>
 
+map \ <Plug>(easymotion-prefix)
+
 map <Leader>ap $p
 map <Leader>riw viwp
 map <Leader>y "+y
@@ -165,7 +167,11 @@ Plugin 'editorconfig/editorconfig-vim'
 
 Plugin 'ngmy/vim-rubocop'
 
+Plugin 'easymotion/vim-easymotion'
+
 Plugin 'mickaobrien/vim-stackoverflow'
+
+Plugin 'tpope/vim-surround'
 
 Plugin 'leafgarland/typescript-vim'
 
@@ -212,12 +218,12 @@ let g:startify_bookmarks = [
         \ { 'cb': '~/dev/opsworks-cookbooks' },
         \]
 let g:startify_list_order = [
-        \ ['   These are my bookmarks:'],
-        \ 'bookmarks',
-        \ ['   My most recently', '   used files'],
-        \ 'files',
         \ ['   My most recently used files in the current directory:'],
         \ 'dir',
+        \ ['   My most recently', '   used files'],
+        \ 'files',
+        \ ['   These are my bookmarks:'],
+        \ 'bookmarks',
         \ ['   These are my sessions:'],
         \ 'sessions',
         \ ]
@@ -270,14 +276,15 @@ augroup suffixes
     endfor
 augroup END
 
-
-function FoldLevelDependingOnStartFile()
-  if @% == ""
-    " No filename for current bugger
-    set foldlevel=9
-  else
-    set foldlevel=0
-  endif
-endfunction
+if !exists('*FoldLevelDependingOnStartFile')
+  function FoldLevelDependingOnStartFile()
+    if @% == ""
+      " No filename for current bugger
+      set foldlevel=9
+    else
+      set foldlevel=0
+    endif
+  endfunction
+endif
 
 au VimEnter * call FoldLevelDependingOnStartFile()

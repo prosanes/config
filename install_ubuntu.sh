@@ -28,4 +28,4 @@ rbenv install 2.3.1
 rbenv local 2.3.1
 
 # Others
-sudo apt-get install -y htop
+sudo apt-get install -y htop inotify-tools
