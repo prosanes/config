@@ -84,15 +84,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -113,7 +104,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/dev/daileon" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:$HOME/dev/daileon"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
 #######################
@@ -145,14 +136,11 @@ PS1="\$(parse_git_branch)$PS1"
 #git alias
 ## Pretty graph
 alias gl='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --'
+alias glmd='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit origin/master..origin/dev'
 ## Pretty graph one parent
 alias gl1p='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --first-parent'
 alias glfh='git log --graph --full-history --all --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit --'
 alias git_tags_with_dates='git log --tags --simplify-by-decoration --pretty="format:%ai %d"'
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
 
 dirtree() {
 	ls $1 -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/';
@@ -180,39 +168,15 @@ function vimswp (){
 
 export TERM='xterm-256color'
 
-alias evlb='cd ~/dev/library'
-alias evlb-start='cd ~/dev/library; SOLR_URL=http://localhost:8983/solr/library rails s -p 3002'
-alias evny='cd ~/dev/nova-york'
-alias evny-start='cd ~/dev/nova-york; rails s -p 3003'
-alias evam='cd ~/dev/amsterdam'
-alias evam-start='cd ~/dev/amsterdam; SOLR_URL=http://localhost:8983// rails s -p 3001'
-alias evis='cd ~/dev/amsterdam/engines/istambul_api'
-alias evsa='cd ~/dev/amsterdam/engines/seller_app'
-alias evsr='cd ~/dev/opsworks-cookbooks/solr-config/files/default/'
-alias evlegacy='cd ~/dev/legacy_consumers'
-alias evlegacy-start='cd ~/dev/legacy_consumers; rm mysql.sock; socat \"UNIX-LISTEN:mysqld.sock,reuseaddr,fork\" EXEC:'\''ssh prosanes@dev.virtualshelf.net socat STDIO UNIX-CONNECT\:/instances/dbases/slave/mysql.sock'\'' & ; source bin/export_env_vars.sh; rake;'
-alias evdaileon='cd ~/dev/daileon'
 alias solr-restart='sudo /opt/solr-5.3.2_ev-0.3/solr-5.3.2-SNAPSHOT/bin/solr restart -Dsolr.solr.home=/home/prosanes/dev/opsworks-cookbooks/solr-config/files/default/'
 alias evtunnel-dev='ssh -f prosanes@dev2.virtualshelf.net -L 9000:localhost:3306 -N'
 alias tunnel='kill `ps aux | grep "ssh -f prosanes@dev2.virtualshelf.net -L 3307:127.0.0.1:3306 -N" | awk "{print $2}"`'
-alias evconnect-dev-db='mysql -A -h127.0.0.1 -P9000 -uevreader -p6rie66 --database=estantevirtual'
-function saw { ssh -i /home/prosanes/.ssh/opswork-admins.pem ubuntu@"$1"; }
 alias dss='function _dss { cd /home/prosanes/dev/daileon;/home/prosanes/dev/daileon/daileon.rb show "$1"; cd -; }; _dss'
 alias dsp='function _dsp { cd /home/prosanes/dev/daileon;/home/prosanes/dev/daileon/daileon.rb -e prod show "$1"; cd -; }; _dsp'
 alias gtag='git tag $(date +"%Y_%m_%d_%H_%M_%S") '
 alias branch='for k in `git branch | perl -pe s/^..//`; do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k -- | head -n 1`\\t$k; done | sort -r'
-
-function ssh_boladao {
-  stack_name=$1;
-  echo $2;
-  if [ -z $2 ]
-  then
-    token='EIP';
-  else
-    token=$2;
-  fi
-  ssh `daileon.rb show $stack_name | grep -E '([0-9]{1,3}\.){3}[0-9]{1,3}' | grep $token | grep online  | awk -F '|' '{print $4;}' | awk -F '(' '{print $1}'`
-}
+alias dc='docker-compose'
+alias be='bundle exec'
 
 function pp_curl {
    curl $1 | python -m json.tool | less
@@ -229,6 +193,19 @@ function watchy {
   done
 }
 
+function daileon {
+  pushd ~/dev/daileon;
+  ./daileon.rb $@;
+  popd;
+}
+
+function pdaileon {
+  pushd ~/dev/daileon;
+  ./daileon.rb -e prod $@;
+  popd;
+}
+
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
