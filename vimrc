@@ -9,6 +9,7 @@ syntax enable
 set ts=2
 set shiftwidth=2
 set expandtab
+set tabstop=2
 "set nowrap
 "set nowrapscan
 set mouse=nvi
@@ -66,6 +67,7 @@ map <Leader>snp :set nopaste<CR>
  
 map <Leader>fmi :set foldmethod=indent<CR>
 map <Leader>fms :set foldmethod=syntax<CR>
+map <Leader>fmm :set foldmethod=manual<CR>
 map <Leader>fl0 :set foldlevel=0<CR>
 map <Leader>fl1 :set foldlevel=1<CR>
 map <Leader>fl2 :set foldlevel=2<CR>
