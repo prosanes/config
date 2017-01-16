@@ -177,6 +177,7 @@ alias gtag='git tag $(date +"%Y_%m_%d_%H_%M_%S") '
 alias branch='for k in `git branch | perl -pe s/^..//`; do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k -- | head -n 1`\\t$k; done | sort -r'
 alias dc='docker-compose'
 alias be='bundle exec'
+alias reload_tags='.git/hooks/ctags'
 
 function pp_curl {
    curl $1 | python -m json.tool | less
