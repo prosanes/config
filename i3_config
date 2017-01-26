@@ -184,3 +184,5 @@ bar {
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
+
+for_window [title="browser_default_tabs"] move workspace number 1

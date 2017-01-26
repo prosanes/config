@@ -207,6 +207,8 @@ function pdaileon {
   popd;
 }
 
+source ~/.bashrc_private
+
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
