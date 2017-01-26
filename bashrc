@@ -178,6 +178,7 @@ alias branch='for k in `git branch | perl -pe s/^..//`; do echo -e `git show --p
 alias dc='docker-compose'
 alias be='bundle exec'
 alias reload_tags='.git/hooks/ctags'
+alias lib='cd ~/dev/library'
 
 function pp_curl {
    curl $1 | python -m json.tool | less
