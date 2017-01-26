@@ -207,6 +207,17 @@ function pdaileon {
   popd;
 }
 
+function rename_workspaces {
+  i3-msg '
+    rename workspace 1 to 1:browser;
+    rename workspace 2 to 2:slack;
+    rename workspace 3 to 3:monitoring;
+    rename workspace 4 to 4:vim;
+    rename workspace 5 to 5:exec;
+    rename workspace 6 to 6:prod;
+  '
+}
+
 source ~/.bashrc_private
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"

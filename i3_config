@@ -185,4 +185,6 @@ bar {
 #######################################################################
 exec i3-config-wizard
 
-for_window [title="browser_default_tabs"] move workspace number 1
+for_window [title="default_tabs"] move workspace number 1
+for_window [title="Slack"] move workspace number 2
+for_window [title="monitoring"] move workspace number 3
