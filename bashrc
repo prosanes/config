@@ -212,11 +212,31 @@ function rename_workspaces {
     rename workspace 1 to 1:browser;
     rename workspace 2 to 2:slack;
     rename workspace 3 to 3:monitoring;
-    rename workspace 4 to 4:vim;
-    rename workspace 5 to 5:exec;
-    rename workspace 6 to 6:prod;
+    rename workspace 4 to 4z:vim;
+    rename workspace 5 to 5x:exec;
+    rename workspace 6 to 6c:prod;
   '
 }
+
+function confirm {                                                                                   
+  read -r -p "${1:-Are you sure?} [Y/n] " response                                                   
+  if [[ "$response" =~ ^([yY]([eE][sS])?|)$ ]]                                                       
+  then                                                                                               
+    true                                                                                             
+  else                                                                                               
+    false                                                                                            
+  fi                                                                                                 
+}                                                                                                    
+                                                                                                     
+function pdeploy {                                                                                   
+  pushd ~/dev/$1                                                                                     
+  curr_branch=$(parse_git_branch)                                                                    
+  git stash && git co master && git pull && git diff ...origin/dev                                   
+  confirm "Deploy branch master to $1 in prod?" && git merge origin/dev && git push && daileon -e prod deploy $1
+  git co "$curr_branch"                                                                              
+  git stash pop                                                                                      
+  popd                                                                                               
+}    
 
 source ~/.bashrc_private
 
@@ -224,3 +244,6 @@ export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+export JRE_HOME="/usr/lib/jvm/java-8-oracle/jre"
