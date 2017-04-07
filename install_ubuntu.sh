@@ -1,5 +1,5 @@
 # Basic development
-sudo apt-get install -y vim git tmux i3
+sudo apt-get install -y vim git tmux i3 i3blocks
 mkdir -p ~/dev
 cd ~/dev
 if [ ! -d "config" ]; then

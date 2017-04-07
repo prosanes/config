@@ -20,6 +20,10 @@ set smartcase
 set wildmode=longest,list,full
 set wildmenu
 
+" Disable .sw* files
+set nobackup
+set noswapfile
+
 " Blocket Platform
 " Correct the file type
 autocmd BufNewFile,BufRead bconf.txt.* set filetype=cfg
@@ -73,6 +77,8 @@ map <Leader>fl1 :set foldlevel=1<CR>
 map <Leader>fl2 :set foldlevel=2<CR>
 map <Leader>fl3 :set foldlevel=3<CR>
 map <Leader>fl9 :set foldlevel=9<CR>
+
+map <Leader>df :set foldmethod=syntax<CR>zadd
 
 " Save as a new file name and open it
 command! -nargs=1 WE :w <args> | :e <args>
@@ -176,6 +182,10 @@ Plugin 'mickaobrien/vim-stackoverflow'
 Plugin 'tpope/vim-surround'
 
 Plugin 'leafgarland/typescript-vim'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'hashivim/vim-vagrant'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
