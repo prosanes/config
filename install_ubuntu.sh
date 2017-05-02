@@ -26,6 +26,22 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo apt-get update
 sudo apt-get install -y google-chrome-stable
 
+# Docker
+sudo apt-get remove docker docker-engine
+sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+# Docker Compose
+sudo sh -c 'curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose'
+sudo chmod +x /usr/local/bin/docker-compose
+
+
 # RbEnv
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
