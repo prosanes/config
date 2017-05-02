@@ -140,7 +140,7 @@ bindsym Mod1+Shift+0 move container to workspace number 10
 
 bindsym Mod1+Ctrl+Shift+d move workspace to output DP1
 bindsym Mod1+Ctrl+Shift+h move workspace to output HDMI1
-bindsym Mod1+Ctrl+Shift+e move workspace to output eDP1
+bindsym Mod1+Ctrl+Shift+e move workspace to output DP2
 
 bindsym Mod1+Ctrl+Shift+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
