@@ -16,6 +16,7 @@ vim +PluginInstall +qa
 # i3
 mkdir ~/.i3
 ln -s ~/dev/config/i3_config ~/.i3/config
+ln -s ~/dev/config/i3blocks.conf ~/.i3blocks.conf
 
 # Others
 sudo apt-get install -y htop inotify-tools
