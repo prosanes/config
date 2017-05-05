@@ -162,9 +162,6 @@ Plugin 'rking/ag.vim'
 
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'regedarek/ZoomWin'
-" <c-w>o ZoomWin in and out
-
 Plugin 'vim-scripts/tComment'
 " gcc to comment one line
 " gc to multiple visual lines
@@ -177,13 +174,9 @@ Plugin 'ngmy/vim-rubocop'
 
 Plugin 'easymotion/vim-easymotion'
 
-Plugin 'mickaobrien/vim-stackoverflow'
-
 Plugin 'tpope/vim-surround'
 
 Plugin 'leafgarland/typescript-vim'
-
-Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'hashivim/vim-vagrant'
 

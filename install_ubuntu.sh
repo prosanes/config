@@ -1,5 +1,8 @@
 # Basic development
-sudo apt-get install -y vim git tmux i3 i3blocks arandr
+sudo apt-get install -y vim git tmux i3 i3blocks arandr ctags
+sudo add-apt-repository ppa:pgolm/the-silver-searcher
+sudo apt-get update
+sudo apt-get install silversearcher-ag
 mkdir -p ~/dev
 cd ~/dev
 if [ ! -d "config" ]; then
@@ -9,7 +12,7 @@ mv ~/.bashrc ~/.bashrc.old
 ln -s ~/dev/config/bashrc ~/.bashrc
 ln -s ~/dev/config/vimrc ~/.vimrc
 ln -s ~/dev/config/gitconfig ~/.gitconfig
-ln -s ~/dev/config/git_template/ ~/.git_template/
+ln -s ~/dev/config/git_template ~/.git_template
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qa
 
@@ -50,3 +53,8 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 source ~/.bashrc
 rbenv install 2.3.1
 rbenv local 2.3.1
+
+# Java 8
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer

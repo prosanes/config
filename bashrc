@@ -104,7 +104,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/dev/daileon"
+export PATH="$PATH:$HOME/.rvm/bin:$HOME/dev/daileon:$HOME/bin/Postman"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
 #######################
