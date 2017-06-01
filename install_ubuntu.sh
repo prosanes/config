@@ -54,6 +54,9 @@ source ~/.bashrc
 rbenv install 2.3.1
 rbenv local 2.3.1
 
+# Ripper-tags
+gem install ripper-tags
+
 # Java 8
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update

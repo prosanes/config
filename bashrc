@@ -179,6 +179,7 @@ alias dc='docker-compose'
 alias be='bundle exec'
 alias reload_tags='.git/hooks/ctags'
 alias lib='cd ~/dev/library'
+alias untar='tar zxvf'
 
 function pp_curl {
    curl $1 | python -m json.tool | less
