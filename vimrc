@@ -80,6 +80,8 @@ map <Leader>fl9 :set foldlevel=9<CR>
 
 map <Leader>df :set foldmethod=syntax<CR>zadd
 
+map <Leader>t :TlistToggle<CR>
+
 " Save as a new file name and open it
 command! -nargs=1 WE :w <args> | :e <args>
 command! -nargs=1 WED :w %:h/<args> | :e %:h/<args>
@@ -179,6 +181,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'leafgarland/typescript-vim'
 
 Plugin 'hashivim/vim-vagrant'
+
+Plugin 'lrvick/Conque-Shell'
+
+Plugin 'vim-scripts/taglist.vim'
+
+Plugin 'udalov/kotlin-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
