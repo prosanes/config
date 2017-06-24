@@ -2,7 +2,7 @@
 	email = prosanes@gmail.com
 	name = Pedro Rosanes
 [push]
-	default = simple
+	default = current
 [core]
 	editor = vi
 [alias]

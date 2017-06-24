@@ -159,6 +159,8 @@ alias dc='docker-compose'
 alias be='bundle exec'
 alias reload_tags='.git/hooks/ctags'
 alias lib='cd ~/dev/library'
+alias untar='tar zxvf'
+alias nohu='nohup $1 >/dev/null 2>&1'
 
 function pp_curl {
    curl $1 | python -m json.tool | less
@@ -199,6 +201,7 @@ function confirm {
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/Android/Sdk/platform-tools/:$PATH"
 eval "$(rbenv init -)"
 
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"

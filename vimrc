@@ -80,6 +80,8 @@ map <Leader>fl9 :set foldlevel=9<CR>
 
 map <Leader>df :set foldmethod=syntax<CR>zadd
 
+map <Leader>t :TlistToggle<CR>
+
 " Save as a new file name and open it
 command! -nargs=1 WE :w <args> | :e <args>
 command! -nargs=1 WED :w %:h/<args> | :e %:h/<args>
@@ -180,6 +182,12 @@ Plugin 'leafgarland/typescript-vim'
 
 Plugin 'hashivim/vim-vagrant'
 
+Plugin 'lrvick/Conque-Shell'
+
+Plugin 'vim-scripts/taglist.vim'
+
+Plugin 'udalov/kotlin-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -237,17 +245,6 @@ let g:startify_list_order = [
 
 "yank filename
 nmap yp :let @" = expand("%") <CR>
-
-" Identando JSON no vim:
-" 
-" Pedro Lira [14:43]
-" :%!python -m json.tool
-" 
-" Pedro Lira [14:43]
-" Identando XML no vim:
-" 
-" Pedro Lira [14:44]
-" :%!xmllint --format -
 
 " Tab navigation
 noremap <C-Right> :tabn<CR> 

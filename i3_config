@@ -36,6 +36,9 @@ floating_modifier Mod4
 
 # start a terminal
 bindsym Mod4+Return exec i3-sensible-terminal
+#
+# start a terminal on the same directory
+bindsym Mod4+Shift+Return exec /usr/bin/terminal-cwd
 
 # start a chrome
 bindsym Mod4+p exec google-chrome
@@ -214,3 +217,4 @@ for_window [title="Slack"] move workspace number 2
 for_window [title="monitoring"] move workspace number 3
 
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
