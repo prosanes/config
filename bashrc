@@ -146,26 +146,6 @@ dirtree() {
 	ls $1 -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/';
 }
 
-# Found in
-# http://code-and-hacks.peculier.com/vim/recovering-after-vim-terminates/
-function vimswp (){
-       swap_files=`find . -name "*.swp"`
-
-       for s in $swap_files ; do
-               orig_file=`echo $s | perl -pe 's!/\.([^/]*).swp$!/$1!' `
-               echo "Editing $orig_file"
-               sleep 1
-               vim -r $orig_file -c "DiffOrig"
-               echo -n "  Ok to delete swap file? [y/n] "
-               read resp
-               if [ "$resp" == "y" ] ; then
-                       echo "  Deleting $s"
-                       rm $s
-               fi
-       done
-}
-
-
 export TERM='xterm-256color'
 
 alias solr-restart='sudo /opt/solr-5.3.2_ev-0.3/solr-5.3.2-SNAPSHOT/bin/solr restart -Dsolr.solr.home=/home/prosanes/dev/opsworks-cookbooks/solr-config/files/default/'
@@ -195,18 +175,6 @@ function watchy {
   done
 }
 
-function daileon {
-  pushd ~/dev/daileon;
-  ./daileon.rb $@;
-  popd;
-}
-
-function pdaileon {
-  pushd ~/dev/daileon;
-  ./daileon.rb -e prod $@;
-  popd;
-}
-
 function rename_workspaces {
   i3-msg '
     rename workspace 1 to 1:browser;
@@ -227,18 +195,6 @@ function confirm {
     false                                                                                            
   fi                                                                                                 
 }                                                                                                    
-                                                                                                     
-function pdeploy {                                                                                   
-  pushd ~/dev/$1                                                                                     
-  curr_branch=$(parse_git_branch)                                                                    
-  git stash && git co master && git pull && git diff ...origin/dev                                   
-  confirm "Deploy branch master to $1 in prod?" && git merge origin/dev && git push && daileon -e prod deploy $1
-  git co "$curr_branch"                                                                              
-  git stash pop                                                                                      
-  popd                                                                                               
-}    
-
-source ~/.bashrc_private
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
@@ -248,3 +204,6 @@ eval "$(rbenv init -)"
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 export JRE_HOME="/usr/lib/jvm/java-8-oracle/jre"
 alias bd=". bd -si"
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
