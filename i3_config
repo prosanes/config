@@ -126,8 +126,11 @@ bindsym Mod4+7 workspace number 7
 bindsym Mod4+q workspace number 7
 
 bindsym Mod4+8 workspace number 8
+bindsym Mod4+Ctrl+q workspace number 8
 bindsym Mod4+9 workspace number 9
+bindsym Mod4+Ctrl+w workspace number 9
 bindsym Mod4+0 workspace number 10
+bindsym Mod4+Ctrl+e workspace number 10
 
 # move focused container to workspace
 bindsym Mod4+Shift+1 move container to workspace number 1

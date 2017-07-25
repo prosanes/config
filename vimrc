@@ -105,7 +105,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=55
 " F5 refresh cache
 let g:ctrlp_max_files = 20000
 let g:ctrlp_max_depth = 40
-let g:ctrlp_custom_ignore = 'tmp/\|node_modules\|client/node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'tmp/\|node_modules\|client/node_modules\|DS_Store\|\.git$'
 
 let &tags = './tags,tags,' . substitute(expand("%:p:h"), "\(^\/home\/prosanes\/dev\/.*/\).*$", "\1", "")
 
@@ -131,7 +131,7 @@ Plugin 'mhinz/vim-startify'
 
 Plugin 'gmarik/vundle'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_realtime = 0
@@ -188,6 +188,10 @@ Plugin 'vim-scripts/taglist.vim'
 
 Plugin 'udalov/kotlin-vim'
 
+Plugin 'elixir-lang/vim-elixir'
+
+Plugin 'jstemmer/gotags'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -240,6 +244,34 @@ let g:startify_list_order = [
         \ ['   These are my sessions:'],
         \ 'sessions',
         \ ]
+
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

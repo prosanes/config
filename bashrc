@@ -210,3 +210,6 @@ alias bd=". bd -si"
 
 export WORKON_HOME=~/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
+source /home/prosanes/dev/lio-scripts-shell/utils.sh
+
+export GOPATH=~/dev/gocode
