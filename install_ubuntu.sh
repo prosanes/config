@@ -1,5 +1,5 @@
 # Basic development
-sudo apt-get install -y vim git tmux i3 i3blocks arandr ctags
+sudo apt-get install -y vim git tmux i3 i3blocks arandr ctags pavucontrol
 sudo add-apt-repository ppa:pgolm/the-silver-searcher
 sudo apt-get update
 sudo apt-get install silversearcher-ag
