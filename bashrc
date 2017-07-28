@@ -104,7 +104,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/dev/daileon:$HOME/bin/Postman"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
 #######################
@@ -200,8 +199,14 @@ function confirm {
 
 export PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/Android/Sdk/platform-tools/:$PATH"
+export GOPATH=~/dev/gocode
+
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/bin/Postman"
+export PATH="$PATH:$HOME/.rbenv/bin"
+export PATH="$PATH:$HOME/Android/Sdk/platform-tools/"
+export PATH="$PATH:$GOPATH/bin"
+
 eval "$(rbenv init -)"
 
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
@@ -212,4 +217,3 @@ export WORKON_HOME=~/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 source /home/prosanes/dev/lio-scripts-shell/utils.sh
 
-export GOPATH=~/dev/gocode
