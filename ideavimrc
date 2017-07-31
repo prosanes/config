@@ -1,0 +1,14 @@
+let mapleader = " "
+
+map <C-Up> <C-e>
+map <C-Down> <C-y>
+
+map g] :action GotoDeclaration<CR>
+map gi :action GotoImplementation<CR>
+map <C-p> :action SearchEverywhere<CR>
+
+map <C-w><Left> <C-w>h
+map <C-w><Right> <C-w>l
+map <C-w><Up> <C-w>k
+map <C-w><Down> <C-w>j
+

@@ -11,6 +11,7 @@ fi
 mv ~/.bashrc ~/.bashrc.old
 ln -s ~/dev/config/bashrc ~/.bashrc
 ln -s ~/dev/config/vimrc ~/.vimrc
+ln -s ~/dev/config/ideavimrc ~/.ideavimrc
 ln -s ~/dev/config/gitconfig ~/.gitconfig
 ln -s ~/dev/config/git_template ~/.git_template
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -54,8 +55,15 @@ source ~/.bashrc
 rbenv install 2.3.1
 rbenv local 2.3.1
 
-# Ripper-tags
-gem install ripper-tags
+# Ripper-tags (ctags for ruby)
+gem install ripper-tags gem-ctags
+gem ctags
+
+# Tags for ruby
+mkdir -p ~/.rbenv/plugin
+git clone git://github.com/tpope/rbenv-ctags.git ~/.rbenv/plugins/rbenv-ctags
+rbenv ctags
+
 
 # Java 8
 sudo add-apt-repository ppa:webupd8team/java

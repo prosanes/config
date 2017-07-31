@@ -83,9 +83,6 @@ Plugin 'jstemmer/gotags'
 
 Plugin 'fatih/vim-go'
 
-Plugin 'xolox/vim-easytags'
-" Auto updates ctags
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -340,6 +337,12 @@ au VimEnter * call FoldLevelDependingOnStartFile()
     \ 'ctagsargs' : '-sort -silent'
   \ }
 
+" Gruvbox
+if filereadable( expand("$HOME/.vim/bundle/gruvbox/colors/gruvbox.vim") )
+	colorscheme gruvbox
+endif
+set background=dark
+
 """"""""""""""""""""""""""
 """ File/Language Based configs """
 """"""""""""""""""""""""""
@@ -351,9 +354,6 @@ autocmd Filetype gitcommit setlocal spell textwidth=55
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 autocmd BufWritePost,FileWritePost *.go execute 'GoLint' | cwindow
 
+" Ruby
+autocmd BufWritePost *.rb silent exec "!ripper-tags -R --exclude=vendor"
 
-" Gruvbox
-if filereadable( expand("$HOME/.vim/bundle/gruvbox/colors/gruvbox.vim") )
-	colorscheme gruvbox
-endif
-set background=dark
